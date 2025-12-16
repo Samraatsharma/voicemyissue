@@ -1,26 +1,68 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --foreground-rgb: 23, 37, 84;
+  --background-start-rgb: 240, 249, 255;
+  --background-end-rgb: 255, 255, 255;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(var(--foreground-rgb));
+  background: white;
+  /* Fallback */
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+input,
+textarea,
+select {
+  @apply border-gray-300 rounded-lg p-3 w-full focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all;
+}
+
+label {
+  @apply block text-sm font-medium text-gray-700 mb-1;
+}
+
+.btn-primary {
+  @apply bg-blue-700 hover:bg-blue-800 text-white font-semibold py-3 px-6 rounded-lg transition-all shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+/* Glassmorphism Utilities */
+.glass-panel {
+  @apply bg-white/80 backdrop-blur-xl border border-white/60;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+}
+
+.glass-input {
+  @apply bg-white/70 backdrop-blur-md focus:bg-white/95 transition-colors border-gray-200/60 shadow-inner;
+}
+
+/* Animations for Data Flow */
+@keyframes scan-horizontal {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.animate-scan-slow {
+  animation: scan-horizontal 15s infinite linear;
+}
+
+.animate-scan-slower {
+  animation: scan-horizontal 25s infinite linear;
+}
+
+.animate-scan-fast {
+  animation: scan-horizontal 10s infinite linear;
 }
